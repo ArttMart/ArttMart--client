@@ -1,0 +1,203 @@
+@import '/styles/assets/variables';
+@import '/styles/assets/mixin';
+
+// Minimal extra variables
+$carousel-height: 70vh;
+$carousel-max-width: 1200px;
+$transition-fast: 300ms;
+$transition-med: 450ms;
+$dots-size: 10px;
+
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: $carousel-max-width;
+  height: $carousel-height;
+  margin: 0 auto;
+  font-family: $font-primary;
+  background-color: $color-grey-light;
+
+  // Hover behavior
+  &:hover {
+    cursor: pointer;
+    .hoverShade {
+      opacity: 0.18;
+    }
+  }
+
+  @include respond(bp-small) {
+    height: 45vh;
+  }
+
+  @include respond(bp-small1) {
+    height: 40vh;
+  }
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform $transition-med ease-in-out;
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slideLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $color-grey-dark-1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: $color-grey-light;
+}
+
+.nameOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  // Soft gradient to ensure name remains legible
+  background: linear-gradient(
+    to top,
+    rgba(32, 32, 32, 0.65),
+    rgba(32, 32, 32, 0.15)
+  );
+  color: $color-grey-light;
+  padding: 0.6rem 0.9rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  text-align: left;
+
+  @include respond(bp-small) {
+    font-size: 0.95rem;
+    padding: 0.55rem 0.8rem;
+  }
+
+  @include respond(bp-small1) {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.hoverShade {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: $color-grey-dark;
+  opacity: 0;
+  transition: opacity $transition-fast ease;
+  pointer-events: none;
+}
+
+// Arrows
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2.25rem;
+  width: 2.25rem;
+  border: none;
+  border-radius: 999px;
+  background-color: rgba(32, 32, 32, 0.35);
+  color: $color-grey-light;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color $transition-fast ease,
+    opacity $transition-fast ease;
+  opacity: 0.95;
+  // No box-shadow per requirement
+
+  &:hover {
+    background-color: rgba(32, 32, 32, 0.5);
+  }
+
+  &:active {
+    background-color: rgba(32, 32, 32, 0.6);
+  }
+
+  @include respond(bp-small) {
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.2rem;
+  }
+
+  @include respond(bp-small1) {
+    height: 1.85rem;
+    width: 1.85rem;
+    font-size: 1.1rem;
+  }
+}
+
+.arrowLeft {
+  left: 0.6rem;
+}
+.arrowRight {
+  right: 0.6rem;
+}
+
+// Dots
+.dots {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0.65rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.4rem;
+}
+
+.dot {
+  height: $dots-size;
+  width: $dots-size;
+  border-radius: 50%;
+  border: 1px solid rgba(32, 32, 32, 0.6);
+  background-color: rgba(240, 240, 240, 0.9);
+  cursor: pointer;
+  transition: transform $transition-fast ease,
+    background-color $transition-fast ease, border-color $transition-fast ease;
+
+  &:hover {
+    transform: scale(1.1);
+    background-color: $color-primary;
+    border-color: $color-primary-dark;
+  }
+}
+
+.activeDot {
+  background-color: $color-primary-dark;
+  border-color: $color-primary-dark;
+}

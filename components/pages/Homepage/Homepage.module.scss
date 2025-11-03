@@ -1,7 +1,24 @@
+@import '/styles/assets/variables';
+
 .homepage {
   margin-bottom: 3rem;
 }
 
 .heading {
   padding: 1.5rem 0 1rem 0;
+  text-align: center;
+}
+
+.sectionContainer {
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+
+.wrapper {
+  border-right: 3px solid $color-primary;
+  border-bottom: 3px solid $color-primary;
+  border-radius: 8px;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
