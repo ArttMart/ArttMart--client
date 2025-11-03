@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
-import styles from './carousel.module.scss';
+import styles from './Carousel.module.scss';
 
 export default function Carousel({ data = [] }) {
   const [index, setIndex] = useState(0);
